@@ -4,7 +4,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ![img.png](public/demo.png)
 
-## Getting Started
+## Demo
+
+https://tic-tac-toe-hhh.vercel.app/
+
+## Development
 
 First, install node module:
 
@@ -19,7 +23,7 @@ yarn dev
 ```
 
 ## Technical
-This project power by NextJS
+This project power by NextJS and deploy with Vercel
 
 Project structure
 ```
