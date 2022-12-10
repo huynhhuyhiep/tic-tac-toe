@@ -25,7 +25,6 @@ const INITIAL_BOARD = {
 };
 export default function Home() {
   const [xTurn, setXTurn] = useState(true);
-  const [won, setWon] = useState(false);
   const [wonCombo, setWonCombo] = useState([]);
   const [boardData, setBoardData] = useState(INITIAL_BOARD);
   const [modalTitle, setModalTitle] = useState("");
@@ -34,27 +33,28 @@ export default function Home() {
   useEffect(() => {
     checkResult();
   }, [boardData]);
+
   const updateBoardData = (idx) => {
-    if (!!boardData[idx] || won) return;
+    if (!!boardData[idx] || wonCombo.length > 0) return;
 
     setBoardData({...boardData, [idx]: xTurn === true ? "X" : "O"});
     setXTurn(!xTurn);
   };
+
   const checkResult = () => {
     let hasWinner = false;
     // Check winner
     WINNING_COMBO.map((bd) => {
       const [a, b, c] = bd;
       if (!!boardData[a] && boardData[a] === boardData[b] && boardData[b] === boardData[c]) {
-        setWon(true);
         setWonCombo([a, b, c]);
 
         if (!xTurn) {
-          setModalTitle(`Player X Won!`);
-          setScore({...score, x: score.x + 1 })
+          setModalTitle("Player X Won!");
+          setScore({...score, x: score.x + 1});
         } else {
-          setModalTitle(`Player O Won!`);
-          setScore({...score, o: score.o + 1 })
+          setModalTitle("Player O Won!");
+          setScore({...score, o: score.o + 1});
         }
 
         hasWinner = true;
@@ -66,7 +66,7 @@ export default function Home() {
       const isBoardFull = Object.keys(boardData).every((key) => !!boardData[key]);
       if (isBoardFull) {
         setModalTitle("Match Draw!");
-        setScore({...score, ties: score.ties + 1 })
+        setScore({...score, ties: score.ties + 1});
       }
     }
   };
@@ -74,7 +74,6 @@ export default function Home() {
   const reset = () => {
     setBoardData(INITIAL_BOARD);
     setXTurn(true);
-    setWon(false);
     setWonCombo([]);
     setModalTitle("");
   };
