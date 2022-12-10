@@ -23,7 +23,10 @@ yarn dev
 ```
 
 ## Technical
-This project power by NextJS and deploy with Vercel
+This project power by NextJS and deploy with Vercel <br/>
+Reason choose NextJS for this project
+- Performance - Static Site Generation - Next.js can pre-render "Tic tac toe" page at build time
+- Developer Experience - Fast Refresh - by using SWC, it's faster than other tool like Create React App
 
 Project structure
 ```
